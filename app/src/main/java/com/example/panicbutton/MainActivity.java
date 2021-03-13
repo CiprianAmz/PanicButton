@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -12,6 +13,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Log.d("MainActivity", "First log!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
+    }
+
+    public void lauchPanicActivity(View view) {
+        Log.d("MainActivity", "Panic");
+    }
+
+    public void launchLocationActivity(View view) {
+        Log.d("MainActivity", "Location");
+    }
+
+    public void launchAddContactsActivity(View view) {
+        Log.d("MainActivity", "AddContacts");
+    }
+
+    public void launchSettingsActivity(View view) {
+        Log.d("MainActivity", "Settings");
     }
 }
