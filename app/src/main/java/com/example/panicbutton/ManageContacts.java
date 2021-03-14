@@ -25,10 +25,7 @@ public class ManageContacts extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_contacts);
 
-
-        contactsList.add("Test Contact1 - 07777777777");
-        contactsList.add("Test Contact2 - 07777777778");
-
+        contactsList = EmergencyListSingleton.getInstance().getContacts();
         contactsSpinner = (Spinner) findViewById(R.id.Contacts);
         ArrayAdapter<String>  adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, contactsList);

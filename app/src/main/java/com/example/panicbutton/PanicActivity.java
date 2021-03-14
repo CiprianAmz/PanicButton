@@ -3,6 +3,7 @@ package com.example.panicbutton;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 public class PanicActivity extends AppCompatActivity {
 
@@ -10,5 +11,11 @@ public class PanicActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_panic);
+
+        TextView panicText = (TextView) findViewById(R.id.PanicText);
+
+        for(String it:EmergencyListSingleton.getInstance().getContacts()) {
+            panicText.append("\n" + it);
+        }
     }
 }
