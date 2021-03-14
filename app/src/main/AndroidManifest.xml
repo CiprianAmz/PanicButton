@@ -9,6 +9,38 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PanicButton">
+        <activity
+            android:name=".EditContact"
+            android:label="Edit Emergency Contact"
+            android:parentActivityName=".ManageContacts">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ManageContacts" />
+        </activity>
+        <activity
+            android:name=".AddContact"
+            android:label="Add Emergency Contact"
+            android:parentActivityName=".ManageContacts">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ManageContacts" />
+        </activity>
+        <activity
+            android:name=".ManageContacts"
+            android:label="Manage Emergency Contacts"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name=".PanicActivity"
+            android:label="Panic Activity"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

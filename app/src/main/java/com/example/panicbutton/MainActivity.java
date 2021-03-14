@@ -2,6 +2,7 @@ package com.example.panicbutton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,16 +17,20 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void lauchPanicActivity(View view) {
+    public void launchPanicActivity(View view) {
         Log.d("MainActivity", "Panic");
+
+        Intent intent = new Intent(this, PanicActivity.class);
+        startActivity(intent);
     }
 
     public void launchLocationActivity(View view) {
         Log.d("MainActivity", "Location");
     }
 
-    public void launchAddContactsActivity(View view) {
-        Log.d("MainActivity", "AddContacts");
+    public void launchManageContactsActivity(View view) {
+        Intent intent = new Intent(this, ManageContacts.class);
+        startActivity(intent);
     }
 
     public void launchSettingsActivity(View view) {

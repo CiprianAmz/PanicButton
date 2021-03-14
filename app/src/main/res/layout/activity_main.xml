@@ -8,10 +8,13 @@
 
     <Button
         android:id="@+id/Pannic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="lauchPanicActivity"
+        android:layout_width="231dp"
+        android:layout_height="220dp"
+        android:background="@android:color/holo_red_dark"
+        android:onClick="launchPanicActivity"
         android:text="Pannic"
+        android:textColorHint="#FFFFFF"
+        app:backgroundTint="#B80122"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -61,16 +64,12 @@
         app:layout_constraintTop_toBottomOf="@+id/Location" />
 
     <Button
-        android:id="@+id/AddContacts"
+        android:id="@+id/ManageContacts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="258dp"
-        android:layout_marginLeft="258dp"
         android:layout_marginTop="494dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginRight="5dp"
-        android:onClick="launchAddContactsActivity"
-        android:text="Add Contacts"
+        android:onClick="launchManageContactsActivity"
+        android:text="Manage The Emergency Contacts"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CurrentLocation" />
