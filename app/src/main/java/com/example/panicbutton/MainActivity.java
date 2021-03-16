@@ -26,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void launchLocationActivity(View view) {
         Log.d("MainActivity", "Location");
+        Intent intent = new Intent(this,LocationActivity.class);
+        startActivity(intent);
+
     }
 
     public void launchManageContactsActivity(View view) {
@@ -33,7 +36,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
     public void launchSettingsActivity(View view) {
-        Log.d("MainActivity", "Settings");
+//        Log.d("MainActivity", "Settings");
+//        Intent intent = new Intent(this,SettingsActivity.class);
+//        startActivity(intent);
     }
 }
