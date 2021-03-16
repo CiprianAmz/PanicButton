@@ -31,11 +31,12 @@ public class LocationActivity extends AppCompatActivity {
 
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
-
         listener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                t.setText(String.format("\n %s   %s", location.getLongitude(), location.getLatitude()));
+                String locationResult = String.format("\n %s   %s", location.getLongitude(), location.getLatitude());
+                EmergencySingleton.getInstance().setLocation(locationResult);
+                t.setText(locationResult);
             }
 
             @Override

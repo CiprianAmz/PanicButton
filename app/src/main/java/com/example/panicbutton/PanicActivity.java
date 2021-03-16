@@ -14,7 +14,7 @@ public class PanicActivity extends AppCompatActivity {
 
         TextView panicText = (TextView) findViewById(R.id.PanicText);
 
-        for(String it:EmergencyListSingleton.getInstance().getContacts()) {
+        for(String it: EmergencySingleton.getInstance().getContacts()) {
             panicText.append("\n" + it);
         }
     }

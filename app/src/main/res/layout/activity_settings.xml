@@ -35,6 +35,7 @@
         android:layout_marginEnd="40dp"
         android:layout_marginRight="40dp"
         android:layout_marginBottom="596dp"
+        android:onClick="updateOwnerName"
         android:text="Update"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,7 +44,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Switch
-        android:id="@+id/switch2"
+        android:id="@+id/dropSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="61dp"
@@ -51,6 +52,7 @@
         android:layout_marginTop="63dp"
         android:layout_marginEnd="133dp"
         android:layout_marginRight="133dp"
+        android:onClick="updateDropFlag"
         android:text="Send PANIC in case of drop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

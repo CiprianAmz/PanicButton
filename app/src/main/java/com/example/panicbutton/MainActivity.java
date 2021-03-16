@@ -6,15 +6,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+    TextView  currentLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
+        currentLocation = findViewById(R.id.CurrentLocation);
+        currentLocation.setText(EmergencySingleton.getInstance().getLocation());
     }
 
     public void launchPanicActivity(View view) {
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d("MainActivity", "Location");
         Intent intent = new Intent(this,LocationActivity.class);
         startActivity(intent);
+        currentLocation.setText(EmergencySingleton.getInstance().getLocation());
 
     }
 
@@ -42,4 +45,5 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this,SettingsActivity.class);
         startActivity(intent);
     }
+
 }
