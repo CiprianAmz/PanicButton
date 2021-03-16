@@ -35,7 +35,7 @@ public class LocationActivity extends AppCompatActivity {
         listener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                t.setText("\n " + location.getLongitude() + "   " + location.getLatitude());
+                t.setText(String.format("\n %s   %s", location.getLongitude(), location.getLatitude()));
             }
 
             @Override

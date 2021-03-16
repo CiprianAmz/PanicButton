@@ -38,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void launchSettingsActivity(View view) {
-//        Log.d("MainActivity", "Settings");
-//        Intent intent = new Intent(this,SettingsActivity.class);
-//        startActivity(intent);
+        Log.d("MainActivity", "Settings");
+        Intent intent = new Intent(this,SettingsActivity.class);
+        startActivity(intent);
     }
 }
