@@ -6,57 +6,62 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
+    <ImageButton
         android:id="@+id/Pannic"
         android:layout_width="231dp"
         android:layout_height="220dp"
-        android:background="@android:color/holo_red_dark"
+        android:background="@mipmap/ic_launcher_foreground"
         android:onClick="launchPanicActivity"
-        android:text="Pannic"
         android:textColorHint="#FFFFFF"
-        app:backgroundTint="#B80122"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499" />
 
-    <Button
+    <ImageButton
         android:id="@+id/Location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:layout_marginLeft="56dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="70dp"
-        android:layout_marginRight="70dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:background="@drawable/ic_launcher_background"
         android:onClick="launchLocationActivity"
-        android:text="Location"
+        app:backgroundTint="@color/cardview_shadow_end_color"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/Settings"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_location" />
 
-    <Button
+    <ImageButton
         android:id="@+id/Settings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
-        android:layout_marginLeft="70dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="56dp"
-        android:layout_marginRight="56dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginRight="100dp"
+        android:background="#00FFFFFF"
         android:onClick="launchSettingsActivity"
         android:rotationX="-2"
-        android:text="Settings"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/Location"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_manage_settings" />
 
     <TextView
         android:id="@+id/CurrentLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="44dp"
         android:layout_marginEnd="50dp"
         android:layout_marginRight="50dp"
         android:text="The location is OFF!"
@@ -69,12 +74,13 @@
         android:id="@+id/ManageContacts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="616dp"
+        android:layout_marginTop="596dp"
         android:onClick="launchManageContactsActivity"
         android:text="Manage The Emergency Contacts"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
