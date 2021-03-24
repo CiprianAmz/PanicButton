@@ -36,7 +36,8 @@
         app:layout_constraintStart_toEndOf="@+id/Settings"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/ic_location" />
+        app:srcCompat="@drawable/ic_location"
+        tools:ignore="VectorDrawableCompat" />
 
     <ImageButton
         android:id="@+id/Settings"

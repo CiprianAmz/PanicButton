@@ -84,7 +84,7 @@ public class LocationActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //noinspection MissingPermission
-                locationManager.requestLocationUpdates("gps", 1, 0, listener);
+                locationManager.requestLocationUpdates("network", 1, 0, listener);
             }
         });
     }
