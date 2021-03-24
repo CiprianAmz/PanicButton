@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     public String phoneNo;
     public String message;
     protected void sendSMSMessage() {
-        phoneNo = "074;
+        phoneNo = "074";
         message = EmergencySingleton.getInstance().getOwnerName() + "is in danger at the location" + EmergencySingleton.getInstance().getLocation();
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.SEND_SMS)
