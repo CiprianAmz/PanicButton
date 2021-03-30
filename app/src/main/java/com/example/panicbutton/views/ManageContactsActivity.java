@@ -9,14 +9,16 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.example.panicbutton.R;
+import com.example.panicbutton.controllers.ContactsController;
 
 import java.util.ArrayList;
 
-public class ManageContacts extends AppCompatActivity {
+public class ManageContactsActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE =
             "pannicbutton.extra.MESSAGE";
     ArrayList<String> contactsList = new ArrayList<>();
     Spinner contactsSpinner;
+    ContactsController contactsController;
 
     public static final int TEXT_REQUEST = 1;
     private static final int EDIT_REQUEST = 10;
@@ -27,7 +29,8 @@ public class ManageContacts extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_contacts);
 
-        contactsList = EmergencySingleton.getInstance().getContacts();
+        contactsController = new ContactsController();
+        contactsList = contactsController.getContactsList();
         contactsSpinner = (Spinner) findViewById(R.id.Contacts);
         ArrayAdapter<String>  adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, contactsList);
@@ -36,7 +39,7 @@ public class ManageContacts extends AppCompatActivity {
     }
 
     public void launchAddContactActivity(View view) {
-        Intent intent = new Intent(this, AddContact.class);
+        Intent intent = new Intent(this, AddContactActivity.class);
 
         startActivityForResult(intent, TEXT_REQUEST);
     }
@@ -49,12 +52,12 @@ public class ManageContacts extends AppCompatActivity {
         if (requestCode == TEXT_REQUEST) {
             // Test to make sure the intent reply result was good.
             if (resultCode == ADD_REQUEST) {
-                String newContact = data.getStringExtra(AddContact.EXTRA_MESSAGE);
+                String newContact = data.getStringExtra(AddContactActivity.EXTRA_MESSAGE);
 
                 contactsList.add(newContact);
             }
             else if(resultCode == EDIT_REQUEST) {
-                String newContact = data.getStringExtra(AddContact.EXTRA_MESSAGE);
+                String newContact = data.getStringExtra(AddContactActivity.EXTRA_MESSAGE);
 
                 int currentContactPosition = contactsSpinner.getSelectedItemPosition();
                 contactsList.set(currentContactPosition, newContact);
@@ -75,7 +78,7 @@ public class ManageContacts extends AppCompatActivity {
     public void launchEditContactActivity(View view) {
         int currentContactPosition = contactsSpinner.getSelectedItemPosition();
         String currentContact = contactsList.get(currentContactPosition);
-        Intent intent = new Intent(this, EditContact.class);
+        Intent intent = new Intent(this, EditContactActivity.class);
 
         intent.putExtra(EXTRA_MESSAGE,currentContact);
         startActivityForResult(intent, TEXT_REQUEST);

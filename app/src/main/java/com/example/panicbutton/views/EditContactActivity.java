@@ -9,7 +9,7 @@ import android.widget.EditText;
 
 import com.example.panicbutton.R;
 
-public class EditContact extends AppCompatActivity {
+public class EditContactActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE =
             "pannicbutton.extra.MESSAGE";
     private EditText name;
@@ -25,7 +25,7 @@ public class EditContact extends AppCompatActivity {
         phoneNumber = findViewById(R.id.editPhone);
 
         Intent intent = getIntent();
-        String message = intent.getStringExtra(ManageContacts.EXTRA_MESSAGE);
+        String message = intent.getStringExtra(ManageContactsActivity.EXTRA_MESSAGE);
         String[] parts = message.split(" - ");
 
         name.setText(parts[0]);

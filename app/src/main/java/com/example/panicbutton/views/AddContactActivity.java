@@ -9,7 +9,7 @@ import android.widget.EditText;
 
 import com.example.panicbutton.R;
 
-public class AddContact extends AppCompatActivity {
+public class AddContactActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE =
             "pannicbutton.extra.MESSAGE";
     private EditText name;

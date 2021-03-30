@@ -24,4 +24,8 @@ public class ContactModel {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    public String toString() {
+        return String.format(this.name + " - " + this.getPhoneNumber());
+    }
 }

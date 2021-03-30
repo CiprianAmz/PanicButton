@@ -14,53 +14,53 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PanicButton">
-        <activity android:name=".SettingsActivity"
-            android:parentActivityName=".MainActivity">
+        <activity android:name=".views.SettingsActivity"
+            android:parentActivityName=".views.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".views.MainActivity" />
         </activity>
         <activity
-            android:name=".LocationActivity"
+            android:name=".views.LocationActivity"
             android:label="LocationActivity"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".views.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".views.MainActivity" />
         </activity>
         <activity
-            android:name=".EditContact"
+            android:name=".views.EditContactActivity"
             android:label="Edit Emergency Contact"
-            android:parentActivityName=".ManageContacts">
+            android:parentActivityName=".views.ManageContactsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ManageContacts" />
+                android:value=".views.ManageContactsActivity" />
         </activity>
         <activity
-            android:name=".AddContact"
+            android:name=".views.AddContactActivity"
             android:label="Add Emergency Contact"
-            android:parentActivityName=".ManageContacts">
+            android:parentActivityName=".views.ManageContactsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ManageContacts" />
+                android:value=".views.ManageContactsActivity" />
         </activity>
         <activity
-            android:name=".ManageContacts"
+            android:name=".views.ManageContactsActivity"
             android:label="Manage Emergency Contacts"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".views.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".views.MainActivity" />
         </activity>
         <activity
-            android:name=".PanicActivity"
+            android:name=".views.PanicActivity"
             android:label="Panic Activity"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".views.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".views.MainActivity" />
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".views.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

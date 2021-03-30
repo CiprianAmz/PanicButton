@@ -18,27 +18,28 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.panicbutton.R;
+import com.example.panicbutton.controllers.LocationActivityController;
 
 public class LocationActivity extends AppCompatActivity {
     public LocationManager locationManager;
     public LocationListener listener;
     private Button b;
     private TextView t;
+    LocationActivityController locationActivityController;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
         t = (TextView) findViewById(R.id.textView);
         b = (Button) findViewById(R.id.RequestLocation);
-
+        locationActivityController = new LocationActivityController();
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         listener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                String locationResult = String.format("\n %s   %s", location.getLongitude(), location.getLatitude());
-                EmergencySingleton.getInstance().setLocation(locationResult);
-                t.setText(locationResult);
+                locationActivityController.setLocation(location.getLongitude(), location.getLatitude());
+                t.setText(locationActivityController.getLocation());
             }
 
             @Override
@@ -86,7 +87,7 @@ public class LocationActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //noinspection MissingPermission
-                locationManager.requestLocationUpdates("network", 1, 0, listener);
+                locationManager.requestLocationUpdates("gps", 1, 0, listener);
             }
         });
     }
