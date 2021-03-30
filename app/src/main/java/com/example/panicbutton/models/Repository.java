@@ -2,10 +2,10 @@ package com.example.panicbutton.models;
 
 import java.util.ArrayList;
 
-public class ContactsRepository {
+public class Repository {
     private ArrayList<ContactModel> contactsList;
 
-    public ContactsRepository(ArrayList<ContactModel> contactsList) {
+    public Repository(ArrayList<ContactModel> contactsList) {
         this.contactsList = contactsList;
     }
 

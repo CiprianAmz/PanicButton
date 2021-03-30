@@ -1,4 +1,4 @@
-package com.example.panicbutton;
+package com.example.panicbutton.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Switch;
 import android.widget.TextView;
+
+import com.example.panicbutton.R;
 
 public class SettingsActivity extends AppCompatActivity {
     private TextView ownerName;

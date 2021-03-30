@@ -1,4 +1,4 @@
-package com.example.panicbutton;
+package com.example.panicbutton.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,35 +7,30 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
-public class EditContact extends AppCompatActivity {
+import com.example.panicbutton.R;
+
+public class AddContact extends AppCompatActivity {
     public static final String EXTRA_MESSAGE =
             "pannicbutton.extra.MESSAGE";
     private EditText name;
     private EditText phoneNumber;
-    private static final int EDIT_REQUEST = 10;
+    private static final int ADD_REQUEST = 20;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_contact);
+        setContentView(R.layout.activity_add_contact);
 
-        name = findViewById(R.id.editName);
-        phoneNumber = findViewById(R.id.editPhone);
-
-        Intent intent = getIntent();
-        String message = intent.getStringExtra(ManageContacts.EXTRA_MESSAGE);
-        String[] parts = message.split(" - ");
-
-        name.setText(parts[0]);
-        phoneNumber.setText(parts[1]);
+        name = findViewById(R.id.inputName);
+        phoneNumber = findViewById(R.id.inputPhone);
     }
 
-    public void editContact(View view) {
+    public void sendContact(View view) {
         String newContact = name.getText().toString() + " - " + phoneNumber.getText().toString() ;
 
         Intent addContactIntent = new Intent();
         addContactIntent.putExtra(EXTRA_MESSAGE, newContact);
-        setResult(EDIT_REQUEST, addContactIntent);
+        setResult(ADD_REQUEST, addContactIntent);
         finish();
     }
 }

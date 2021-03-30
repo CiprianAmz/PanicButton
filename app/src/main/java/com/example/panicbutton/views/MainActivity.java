@@ -1,4 +1,4 @@
-package com.example.panicbutton;
+package com.example.panicbutton.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.telephony.SmsManager;
 import android.widget.Toast;
 
-import java.util.ArrayList;
+import com.example.panicbutton.R;
 
 public class MainActivity extends AppCompatActivity {
     TextView  currentLocation;

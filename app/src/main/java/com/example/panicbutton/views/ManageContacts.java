@@ -1,4 +1,4 @@
-package com.example.panicbutton;
+package com.example.panicbutton.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+
+import com.example.panicbutton.R;
 
 import java.util.ArrayList;
 

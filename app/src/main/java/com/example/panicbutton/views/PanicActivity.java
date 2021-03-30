@@ -1,9 +1,11 @@
-package com.example.panicbutton;
+package com.example.panicbutton.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.TextView;
+
+import com.example.panicbutton.R;
 
 public class PanicActivity extends AppCompatActivity {
 

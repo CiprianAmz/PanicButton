@@ -1,4 +1,4 @@
-package com.example.panicbutton;
+package com.example.panicbutton.views;
 
 import java.util.ArrayList;
 

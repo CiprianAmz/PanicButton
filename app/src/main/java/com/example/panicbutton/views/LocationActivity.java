@@ -1,4 +1,4 @@
-package com.example.panicbutton;
+package com.example.panicbutton.views;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +16,8 @@ import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.panicbutton.R;
 
 public class LocationActivity extends AppCompatActivity {
     public LocationManager locationManager;
