@@ -8,18 +8,23 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.panicbutton.R;
+import com.example.panicbutton.controllers.SettingsController;
 
 public class SettingsActivity extends AppCompatActivity {
     private TextView ownerName;
     private Switch panicDropFlag;
+    private SettingsController settingsController;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+        settingsController = new SettingsController();
+
         ownerName = findViewById(R.id.ownerName);
-        ownerName.setText(EmergencySingleton.getInstance().getOwnerName());
+        ownerName.setText(settingsController.getName());
         panicDropFlag = findViewById(R.id.dropSwitch);
-       if(EmergencySingleton.getInstance().isDropFlag()) {
+       if(settingsController.getDropFlag()) {
             panicDropFlag.setChecked(true);
         }
         else{
@@ -29,14 +34,14 @@ public class SettingsActivity extends AppCompatActivity {
 
 
     public void updateOwnerName(View view) {
-        EmergencySingleton.getInstance().setOwnerName(ownerName.getText().toString());
+        settingsController.updateName(ownerName.getText().toString());
     }
 
     public void updateDropFlag(View view) {
         if(panicDropFlag.isChecked()) {
-            EmergencySingleton.getInstance().setDropFlag(true);
+            settingsController.updateDropFlag(true);
         }else{
-            EmergencySingleton.getInstance().setDropFlag(false);
+            settingsController.updateDropFlag(false);
         }
     }
 }
