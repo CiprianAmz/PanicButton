@@ -1,8 +1,8 @@
 package com.example.panicbutton.models;
 
 public class LocationModel {
-    private static double xCoordinate;
-    private static double yCoordinate;
+    private double xCoordinate;
+    private double yCoordinate;
 
     public LocationModel(double xCoordinate, double yCoordinate) {
         this.xCoordinate = xCoordinate;

@@ -1,8 +1,8 @@
 package com.example.panicbutton.models;
 
 public class UserSettingsModel {
-    private static String userName;
-    private static Boolean DropFlag;
+    private String userName;
+    private Boolean DropFlag;
 
     public UserSettingsModel(String userName, Boolean dropFlag) {
         this.userName = userName;

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class ModelRepository {
     private static ArrayList<ContactModel> contactsList;
-    private LocationModel location;
-    private UserSettingsModel userSettings;
+    private static LocationModel location;
+    private static UserSettingsModel userSettings;
 
     public ModelRepository() {
         location = new LocationModel(0, 0);
