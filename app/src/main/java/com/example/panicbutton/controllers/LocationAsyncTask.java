@@ -1,5 +1,6 @@
 package com.example.panicbutton.controllers;
 
+import android.location.Location;
 import android.os.AsyncTask;
 import android.widget.TextView;
 
@@ -8,23 +9,23 @@ import java.lang.ref.WeakReference;
 public class LocationAsyncTask extends AsyncTask<Void,Void, String> {
 
     // The TextView where we will show results
-    private WeakReference<TextView> mTextView;
-
+    private WeakReference<Location> mTextView;
+    LocationActivityController locationActivityController;
     // Constructor that provides a reference to the TextView from the MainActivity
-    LocationAsyncTask(TextView tv) {
-        mTextView = new WeakReference<>(tv);
+    public LocationAsyncTask(Location location) {
+        mTextView = new WeakReference<>(location);
+        locationActivityController = new LocationActivityController();
     }
 
     @Override
     protected String doInBackground(Void... voids) {
+        return locationActivityController.getLocation();
 
-        // TO BE IMPLEMENTED
-
-        return "Not implemented!";
     }
 
     protected void onPostExecute(String result) {
-        mTextView.get().setText(result);
+        locationActivityController.setLocation(mTextView.get().getLongitude(), mTextView.get().getLatitude() );
+
     }
 
 }

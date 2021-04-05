@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.example.panicbutton.R;
 import com.example.panicbutton.controllers.LocationActivityController;
+import com.example.panicbutton.controllers.LocationAsyncTask;
 
 public class LocationActivity extends AppCompatActivity {
     public LocationManager locationManager;
@@ -26,6 +27,7 @@ public class LocationActivity extends AppCompatActivity {
     private Button b;
     private TextView t;
     LocationActivityController locationActivityController;
+    Location alocation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,12 +36,13 @@ public class LocationActivity extends AppCompatActivity {
         b = (Button) findViewById(R.id.RequestLocation);
         locationActivityController = new LocationActivityController();
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-
+        alocation = new Location("gps");
         listener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
                 locationActivityController.setLocation(location.getLongitude(), location.getLatitude());
                 t.setText(locationActivityController.getLocation());
+                alocation = location;
             }
 
             @Override
@@ -88,8 +91,17 @@ public class LocationActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //noinspection MissingPermission
                 locationManager.requestLocationUpdates("gps", 1, 0, listener);
+                startTask(view);
             }
         });
     }
+    public void startTask(View view) {
+
+        // Start the AsyncTask.
+        // The AsyncTask has a callback that will update the text view.
+        new LocationAsyncTask(alocation).execute();
+    }
+
+
 
 }
