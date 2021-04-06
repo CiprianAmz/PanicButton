@@ -11,6 +11,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
@@ -20,7 +21,7 @@ import java.lang.ref.WeakReference;
 public class LocationAsyncTask extends AsyncTask<Void, Void, String> {
 
     // The TextView where we will show results
-    private WeakReference<Location> mTextView;
+    private WeakReference<TextView> mTextView;
     LocationActivityController locationActivityController;
     public LocationManager locationManager;
     public LocationListener listener;
@@ -28,8 +29,8 @@ public class LocationAsyncTask extends AsyncTask<Void, Void, String> {
 
     // Constructor that provides a reference to the TextView from the MainActivity
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public LocationAsyncTask( Context context) {
-        //mTextView = new WeakReference<>(location);
+    public LocationAsyncTask( Context context , TextView txt) {
+        mTextView = new WeakReference<>(txt);
         context1 = context;
         locationActivityController = new LocationActivityController();
        // locationManager = new LocationManager();
@@ -39,7 +40,7 @@ public class LocationAsyncTask extends AsyncTask<Void, Void, String> {
             @Override
             public void onLocationChanged(Location location) {
                 locationActivityController.setLocation(location.getLongitude(), location.getLatitude());
-                //t.setText(locationActivityController.getLocation());
+                mTextView.get().setText(locationActivityController.getLocation());
             }
 
             @Override

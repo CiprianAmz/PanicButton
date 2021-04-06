@@ -25,13 +25,15 @@ import com.example.panicbutton.controllers.LocationAsyncTask;
 public class LocationActivity extends AppCompatActivity {
     private Button b;
     private TextView t;
+    LocationActivityController locationActivityController;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
         t = (TextView) findViewById(R.id.textView);
         b = (Button) findViewById(R.id.RequestLocation);
-
+        locationActivityController = new LocationActivityController();
+        t.setText(locationActivityController.getLocation());
 
         configure_button();
     }
@@ -70,7 +72,7 @@ public class LocationActivity extends AppCompatActivity {
 
         // Start the AsyncTask.
         // The AsyncTask has a callback that will update the text view.
-        new LocationAsyncTask( this).execute();
+        new LocationAsyncTask( this, t).execute();
     }
 
 
