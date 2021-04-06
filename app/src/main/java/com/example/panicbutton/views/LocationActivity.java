@@ -1,6 +1,7 @@
 package com.example.panicbutton.views;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -22,45 +23,15 @@ import com.example.panicbutton.controllers.LocationActivityController;
 import com.example.panicbutton.controllers.LocationAsyncTask;
 
 public class LocationActivity extends AppCompatActivity {
-    public LocationManager locationManager;
-    public LocationListener listener;
     private Button b;
     private TextView t;
-    LocationActivityController locationActivityController;
-    Location alocation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
         t = (TextView) findViewById(R.id.textView);
         b = (Button) findViewById(R.id.RequestLocation);
-        locationActivityController = new LocationActivityController();
-        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        alocation = new Location("gps");
-        listener = new LocationListener() {
-            @Override
-            public void onLocationChanged(Location location) {
-                locationActivityController.setLocation(location.getLongitude(), location.getLatitude());
-                t.setText(locationActivityController.getLocation());
-                alocation = location;
-            }
 
-            @Override
-            public void onStatusChanged(String s, int i, Bundle bundle) {
-
-            }
-
-            @Override
-            public void onProviderEnabled(String s) {
-            }
-
-            @Override
-            public void onProviderDisabled(String s) {
-
-                Intent i = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                startActivity(i);
-            }
-        };
 
         configure_button();
     }
@@ -87,19 +58,19 @@ public class LocationActivity extends AppCompatActivity {
         }
         // this code won't execute IF permissions are not allowed, because in the line above there is return statement.
         b.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View view) {
-                //noinspection MissingPermission
-                locationManager.requestLocationUpdates("gps", 1, 0, listener);
                 startTask(view);
             }
         });
     }
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public void startTask(View view) {
 
         // Start the AsyncTask.
         // The AsyncTask has a callback that will update the text view.
-        new LocationAsyncTask(alocation).execute();
+        new LocationAsyncTask( this).execute();
     }
 
 
