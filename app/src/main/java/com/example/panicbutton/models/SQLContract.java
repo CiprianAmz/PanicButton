@@ -3,10 +3,10 @@ package com.example.panicbutton.models;
 import android.database.sqlite.*;
 import android.provider.BaseColumns;
 
-public class SQLManagerContract {
+public class SQLContract {
     // To prevent someone from accidentally instantiating the contract class,
     // make the constructor private.
-    private SQLManagerContract() {}
+    private SQLContract() {}
 
     /* Inner class that defines the table contents */
     public static class FeedEntry implements BaseColumns {
