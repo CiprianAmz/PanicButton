@@ -11,7 +11,6 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
@@ -25,16 +24,16 @@ public class LocationAsyncTask extends AsyncTask<Void, Void, String> {
     LocationActivityController locationActivityController;
     public LocationManager locationManager;
     public LocationListener listener;
-    public Context context;
+    public Context context1;
 
     // Constructor that provides a reference to the TextView from the MainActivity
     @RequiresApi(api = Build.VERSION_CODES.M)
     public LocationAsyncTask( Context context) {
         //mTextView = new WeakReference<>(location);
-        context = this.context;
+        context1 = context;
         locationActivityController = new LocationActivityController();
-        locationActivityController = new LocationActivityController();
-        locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+       // locationManager = new LocationManager();
+        locationManager = (LocationManager) context1.getSystemService(Context.LOCATION_SERVICE);
         Context finalContext = context;
         listener = new LocationListener() {
             @Override
@@ -70,8 +69,8 @@ public class LocationAsyncTask extends AsyncTask<Void, Void, String> {
     }
 
     protected void onPostExecute(String result) {
-        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(context1, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context1, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.checkSelfPermission(context1, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context1, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 }
                 return;

@@ -61,12 +61,12 @@ public class LocationActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View view) {
-                startTask(view);
+                startTask();
             }
         });
     }
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public void startTask(View view) {
+    public void startTask() {
 
         // Start the AsyncTask.
         // The AsyncTask has a callback that will update the text view.
