@@ -12,11 +12,11 @@ public class SettingsController {
     }
 
     public void updateName(String name) {
-        modelRepository.getUserSettings().setUserName(name);
+        modelRepository.setUserName(name);
     }
 
-    public void updateDropFlag(Boolean DropFlag) {
-        modelRepository.getUserSettings().setDropFlag(DropFlag);
+    public void updateDropFlag(Boolean dropFlag) {
+        modelRepository.setDropFlag(dropFlag);
     }
 
     public String getName() {

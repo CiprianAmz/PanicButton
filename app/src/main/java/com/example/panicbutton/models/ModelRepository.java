@@ -1,11 +1,15 @@
 package com.example.panicbutton.models;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import java.util.ArrayList;
 
 public class ModelRepository {
     private SQLManager sqlManager;
+    private SharedPreferences sharedPref;
+    private static final String PREFERENCES_KEY = "User_Setings";
+
 
     private static ArrayList<ContactModel> contactsList;
     private static LocationModel location;
@@ -15,9 +19,14 @@ public class ModelRepository {
     public ModelRepository(Context context) {
         if(initialised_flag == false) {
             location = new LocationModel(0, 0);
-            userSettings = new UserSettingsModel("Your friend", false);
+            userSettings = new UserSettingsModel("Your Friend", false);
             initialised_flag = true;
         }
+
+        sharedPref = context.getSharedPreferences(PREFERENCES_KEY, Context.MODE_PRIVATE);
+
+        userSettings.setUserName(sharedPref.getString("NAME", "Your friend"));
+        userSettings.setDropFlag(sharedPref.getBoolean("DROP", false));
 
         sqlManager = new SQLManager(context);
         contactsList = sqlManager.getContacts();
@@ -36,7 +45,28 @@ public class ModelRepository {
     }
 
     public void setUserSettings(UserSettingsModel userSettings) {
+        SharedPreferences.Editor editor = sharedPref.edit();
         this.userSettings = userSettings;
+
+        editor.putString("NAME", userSettings.getUserName());
+        editor.putBoolean("DROP", userSettings.getDropFlag());
+        editor.apply();
+    }
+
+    public void setUserName(String userName) {
+        SharedPreferences.Editor editor = sharedPref.edit();
+        this.userSettings.setUserName(userName);
+
+        editor.putString("NAME", userName);
+        editor.apply();
+    }
+
+    public void setDropFlag(boolean dropFlag) {
+        SharedPreferences.Editor editor = sharedPref.edit();
+        this.userSettings.setDropFlag(dropFlag);
+
+        editor.putBoolean("DROP", dropFlag);
+        editor.apply();
     }
 
     public ArrayList<ContactModel> getContactsList() {
