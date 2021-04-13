@@ -10,12 +10,16 @@ public class ModelRepository {
     private static ArrayList<ContactModel> contactsList;
     private static LocationModel location;
     private static UserSettingsModel userSettings;
+    private static boolean initialised_flag = false;
 
     public ModelRepository(Context context) {
-        location = new LocationModel(0, 0);
-        userSettings = new UserSettingsModel("Your friend", false);
-        sqlManager = new SQLManager(context);
+        if(initialised_flag == false) {
+            location = new LocationModel(0, 0);
+            userSettings = new UserSettingsModel("Your friend", false);
+            initialised_flag = true;
+        }
 
+        sqlManager = new SQLManager(context);
         contactsList = sqlManager.getContacts();
     }
 

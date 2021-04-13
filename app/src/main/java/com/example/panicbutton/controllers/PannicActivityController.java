@@ -4,8 +4,6 @@ import android.content.Context;
 
 import com.example.panicbutton.models.ContactModel;
 import com.example.panicbutton.models.ModelRepository;
-import com.example.panicbutton.models.UserSettingsModel;
-import com.example.panicbutton.views.EmergencySingleton;
 
 import java.util.ArrayList;
 
