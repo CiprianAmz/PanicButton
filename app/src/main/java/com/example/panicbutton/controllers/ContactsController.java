@@ -1,5 +1,7 @@
 package com.example.panicbutton.controllers;
 
+import android.content.Context;
+
 import com.example.panicbutton.models.ContactModel;
 import com.example.panicbutton.models.ModelRepository;
 
@@ -8,8 +10,8 @@ import java.util.ArrayList;
 public class ContactsController {
     private ModelRepository modelRepository;
 
-    public ContactsController() {
-        modelRepository = new ModelRepository();
+    public ContactsController(Context context) {
+        modelRepository = new ModelRepository(context);
     }
 
     public void addNewContact(String contact) {

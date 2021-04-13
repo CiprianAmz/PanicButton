@@ -1,5 +1,7 @@
 package com.example.panicbutton.controllers;
 
+import android.content.Context;
+
 import com.example.panicbutton.models.ContactModel;
 import com.example.panicbutton.models.ModelRepository;
 import com.example.panicbutton.models.UserSettingsModel;
@@ -10,8 +12,8 @@ import java.util.ArrayList;
 public class PannicActivityController {
     private ModelRepository modelRepository;
 
-    public PannicActivityController() {
-        modelRepository = new ModelRepository();
+    public PannicActivityController(Context context) {
+        modelRepository = new ModelRepository(context);
     }
 
     public String getPanicText() {

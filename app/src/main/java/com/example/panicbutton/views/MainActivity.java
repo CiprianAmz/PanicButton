@@ -18,6 +18,10 @@ import com.example.panicbutton.R;
 import com.example.panicbutton.controllers.LocationAsyncTask;
 import com.example.panicbutton.controllers.MainActivityController;
 import com.example.panicbutton.controllers.NotifyService;
+import com.example.panicbutton.models.ContactModel;
+import com.example.panicbutton.models.SQLManager;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     TextView  currentLocation;
@@ -30,9 +34,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         currentLocation = findViewById(R.id.CurrentLocation);
 
-        mainActivityController = new MainActivityController();
+        mainActivityController = new MainActivityController(this);
         currentLocation.setText(mainActivityController.getLocation());
         startTask();
+
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             Calendar calendar = Calendar.getInstance();

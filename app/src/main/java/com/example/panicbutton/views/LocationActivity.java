@@ -32,7 +32,7 @@ public class LocationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_location);
         t = (TextView) findViewById(R.id.textView);
         b = (Button) findViewById(R.id.RequestLocation);
-        locationActivityController = new LocationActivityController();
+        locationActivityController = new LocationActivityController(this);
         t.setText(locationActivityController.getLocation());
 
         configure_button();

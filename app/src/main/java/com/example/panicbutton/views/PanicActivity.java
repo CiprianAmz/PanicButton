@@ -37,7 +37,7 @@ public class PanicActivity extends AppCompatActivity {
 
         TextView panicText = (TextView) findViewById(R.id.PanicText);
 
-        pannicActivityController = new PannicActivityController();
+        pannicActivityController = new PannicActivityController(this);
         createNotificationChannel();
         sendSMSMessage();
         panicText.setText(pannicActivityController.getPanicText());

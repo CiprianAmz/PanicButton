@@ -32,7 +32,7 @@ public class LocationAsyncTask extends AsyncTask<Void, Void, String> {
     public LocationAsyncTask( Context context , TextView txt) {
         mTextView = new WeakReference<>(txt);
         context1 = context;
-        locationActivityController = new LocationActivityController();
+        locationActivityController = new LocationActivityController(context);
        // locationManager = new LocationManager();
         locationManager = (LocationManager) context1.getSystemService(Context.LOCATION_SERVICE);
         Context finalContext = context;

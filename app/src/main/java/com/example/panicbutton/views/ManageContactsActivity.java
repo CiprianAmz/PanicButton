@@ -29,7 +29,7 @@ public class ManageContactsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_contacts);
 
-        contactsController = new ContactsController();
+        contactsController = new ContactsController(this);
         contactsList = contactsController.getContactsList();
         contactsSpinner = (Spinner) findViewById(R.id.Contacts);
         ArrayAdapter<String>  adapter = new ArrayAdapter<>(this,
@@ -82,5 +82,11 @@ public class ManageContactsActivity extends AppCompatActivity {
 
         intent.putExtra(EXTRA_MESSAGE,currentContact);
         startActivityForResult(intent, TEXT_REQUEST);
+    }
+
+    @Override
+    public void onDestroy() {
+        contactsController.setContactList(contactsList);
+        super.onDestroy();
     }
 }

@@ -13,7 +13,7 @@ public class SQLManager {
     private SQLHelper dbHelper;
     private SQLiteDatabase db;
 
-    SQLManager(Context context) {
+    public SQLManager(Context context) {
         dbHelper = new SQLHelper(context);
         db = dbHelper.getReadableDatabase();
     }
@@ -57,6 +57,21 @@ public class SQLManager {
         return items;
     }
 
+    public boolean updateAllItems(ArrayList<ContactModel> contacts) {
+        boolean retVal = true;
+        db.execSQL("delete from "+ SQLContract.FeedEntry.TABLE_NAME);
+
+        for(ContactModel contact: contacts) {
+            boolean result = insertEntry(contact.getName(), contact.getPhoneNumber());
+
+            if(result == false) {
+                retVal = false;
+            }
+        }
+
+        return retVal;
+    }
+
     public int deleteEntry(String name) {
         // Define 'where' part of query.
         String selection = SQLContract.FeedEntry.COLUMN_NAME + " LIKE ?";
@@ -67,6 +82,21 @@ public class SQLManager {
         int deletedRows = db.delete(SQLContract.FeedEntry.TABLE_NAME, selection, selectionArgs);
 
         return deletedRows;
+    }
+
+    public Boolean insertEntry(String name, String phone) {
+        ContentValues values = new ContentValues();
+        values.put(SQLContract.FeedEntry.COLUMN_NAME, name);
+        values.put(SQLContract.FeedEntry.COLUMN_PHONE, phone);
+
+        long result = db.insert(SQLContract.FeedEntry.TABLE_NAME, null, values);
+
+        if(result == -1) {
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 
     public int updateEntry(String name, String newName, String newPhone) {

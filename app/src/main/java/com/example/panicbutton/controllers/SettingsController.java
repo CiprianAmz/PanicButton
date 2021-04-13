@@ -1,12 +1,14 @@
 package com.example.panicbutton.controllers;
 
+import android.content.Context;
+
 import com.example.panicbutton.models.ModelRepository;
 
 public class SettingsController {
     private ModelRepository modelRepository;
 
-    public SettingsController() {
-        modelRepository = new ModelRepository();
+    public SettingsController(Context context) {
+        modelRepository = new ModelRepository(context);
     }
 
     public void updateName(String name) {

@@ -19,7 +19,7 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        settingsController = new SettingsController();
+        settingsController = new SettingsController(this);
 
         ownerName = findViewById(R.id.ownerName);
         ownerName.setText(settingsController.getName());

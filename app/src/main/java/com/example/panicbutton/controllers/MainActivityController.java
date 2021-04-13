@@ -1,12 +1,17 @@
 package com.example.panicbutton.controllers;
 
+import android.content.Context;
+
 import com.example.panicbutton.models.ModelRepository;
 
 public class MainActivityController {
     private ModelRepository modelRepository;
 
+    public MainActivityController(Context context) {
+        modelRepository = new ModelRepository(context);
+    }
+
     public String getLocation() {
-        modelRepository = new ModelRepository();
         double xCoordinate = modelRepository.getLocation().getxCoordinate();
         double yCoordinate = modelRepository.getLocation().getyCoordinate();
 
