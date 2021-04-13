@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             Calendar calendar = Calendar.getInstance();
 
-            calendar.set(Calendar.HOUR_OF_DAY, 00);
-            calendar.set(Calendar.MINUTE, 41);
+            calendar.set(Calendar.HOUR_OF_DAY, 8);
+            calendar.set(Calendar.MINUTE, 30);
             calendar.set(Calendar.SECOND, 00);
 
             Intent intent = new Intent(getApplicationContext(), NotifyService.class);
