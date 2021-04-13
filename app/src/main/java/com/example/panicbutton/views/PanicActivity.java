@@ -106,12 +106,12 @@ public class PanicActivity extends AppCompatActivity {
                 android.os.Build.VERSION_CODES.O) {
             // Create a NotificationChannel
             NotificationChannel notificationChannel = new NotificationChannel(PRIMARY_CHANNEL_ID,
-                    "Mascot Notification", NotificationManager
+                    "Pannic Notification", NotificationManager
                     .IMPORTANCE_HIGH);
             notificationChannel.enableLights(true);
             notificationChannel.setLightColor(Color.RED);
             notificationChannel.enableVibration(true);
-            notificationChannel.setDescription("Notification from Mascot");
+            notificationChannel.setDescription("Notification received when the Pannic messages are sent.");
             mNotifyManager.createNotificationChannel(notificationChannel);
         }
     }
