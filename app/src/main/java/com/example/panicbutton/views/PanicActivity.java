@@ -12,6 +12,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.telephony.SmsMessage;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +26,9 @@ public class PanicActivity extends AppCompatActivity {
     private NotificationManager mNotifyManager;
 
     private static final int NOTIFICATION_ID = 0;
+    private static final String SMS_MESSAGE_FAILED = "SMS failed... Please protect yourself and call the police.";
+    private static final String SMS_MESSAGE_SUCCESS = "SOS was send to your friends.";
+    private String SmsNotificationMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,22 +38,22 @@ public class PanicActivity extends AppCompatActivity {
         TextView panicText = (TextView) findViewById(R.id.PanicText);
 
         pannicActivityController = new PannicActivityController();
+        createNotificationChannel();
         sendSMSMessage();
         panicText.setText(pannicActivityController.getPanicText());
-        createNotificationChannel();
-        sendNotification();
     }
 
     private NotificationCompat.Builder getNotificationBuilder(){
         NotificationCompat.Builder notifyBuilder = new NotificationCompat.Builder(this, PRIMARY_CHANNEL_ID)
                 .setContentTitle("SOS")
-                .setContentText("SOS was send to your friends" + "")
+                .setContentText(SmsNotificationMessage + "")
                 .setSmallIcon(R.mipmap.ic_launcher);
         return notifyBuilder;
     }
 
     protected void sendSMSMessage() {
         String message = pannicActivityController.getPanicText();
+        SmsNotificationMessage = SMS_MESSAGE_FAILED;
 
         for(String phoneNo:pannicActivityController.getPhoneNumbers()) {
             if (ContextCompat.checkSelfPermission(this,
@@ -65,9 +69,11 @@ public class PanicActivity extends AppCompatActivity {
             } else {
                 SmsManager smsManager = SmsManager.getDefault();
                 smsManager.sendTextMessage(phoneNo, null, message, null, null);
-
+                SmsNotificationMessage = SMS_MESSAGE_SUCCESS;
             }
         }
+
+        sendNotification();
     }
 
     @Override
@@ -106,12 +112,12 @@ public class PanicActivity extends AppCompatActivity {
                 android.os.Build.VERSION_CODES.O) {
             // Create a NotificationChannel
             NotificationChannel notificationChannel = new NotificationChannel(PRIMARY_CHANNEL_ID,
-                    "Pannic Notification", NotificationManager
+                    "Panic Notification", NotificationManager
                     .IMPORTANCE_HIGH);
             notificationChannel.enableLights(true);
             notificationChannel.setLightColor(Color.RED);
             notificationChannel.enableVibration(true);
-            notificationChannel.setDescription("Notification received when the Pannic messages are sent.");
+            notificationChannel.setDescription("Notification received when the Panic messages are sent.");
             mNotifyManager.createNotificationChannel(notificationChannel);
         }
     }
