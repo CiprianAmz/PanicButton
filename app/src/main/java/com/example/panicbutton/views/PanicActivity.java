@@ -42,8 +42,8 @@ public class PanicActivity extends AppCompatActivity {
 
     private NotificationCompat.Builder getNotificationBuilder(){
         NotificationCompat.Builder notifyBuilder = new NotificationCompat.Builder(this, PRIMARY_CHANNEL_ID)
-                .setContentTitle("You've been notified!")
-                .setContentText("This is your notification text.")
+                .setContentTitle("SOS")
+                .setContentText("SOS was send to your friends" + "")
                 .setSmallIcon(R.mipmap.ic_launcher);
         return notifyBuilder;
     }
