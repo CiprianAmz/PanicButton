@@ -37,6 +37,7 @@ public class PanicActivity extends AppCompatActivity {
         sendSMSMessage();
         panicText.setText(pannicActivityController.getPanicText());
         createNotificationChannel();
+        sendNotification();
     }
 
     private NotificationCompat.Builder getNotificationBuilder(){
@@ -64,7 +65,7 @@ public class PanicActivity extends AppCompatActivity {
             } else {
                 SmsManager smsManager = SmsManager.getDefault();
                 smsManager.sendTextMessage(phoneNo, null, message, null, null);
-                sendNotification();
+
             }
         }
     }
