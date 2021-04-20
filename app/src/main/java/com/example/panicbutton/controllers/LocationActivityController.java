@@ -17,7 +17,7 @@ public class LocationActivityController {
     }
 
     public String getLocation() {
-        return String.valueOf(modelRepository.getLocation().getxCoordinate()) + " " +
-            String.valueOf(modelRepository.getLocation().getyCoordinate());
+        return String.format("%.3f", modelRepository.getLocation().getxCoordinate()) + " " +
+                String.format("%.3f",modelRepository.getLocation().getyCoordinate());
         }
 }

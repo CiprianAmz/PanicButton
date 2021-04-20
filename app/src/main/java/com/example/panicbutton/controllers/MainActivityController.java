@@ -19,7 +19,11 @@ public class MainActivityController {
             return "The location is OFF!";
         }
         else {
-            return String.valueOf(xCoordinate) + " " + String.valueOf(yCoordinate);
+            return String.format("%.3f", xCoordinate) + " " + String.format("%.3f", yCoordinate);
         }
+    }
+
+    public boolean getDropFlag() {
+        return modelRepository.getUserSettings().getDropFlag();
     }
 }
