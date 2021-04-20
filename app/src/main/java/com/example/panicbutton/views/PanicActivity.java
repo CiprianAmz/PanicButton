@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.panicbutton.R;
 import com.example.panicbutton.controllers.PannicActivityController;
+import com.example.panicbutton.controllers.SmsService;
 
 public class PanicActivity extends AppCompatActivity {
     private static final int MY_PERMISSIONS_REQUEST_SEND_SMS =0;
@@ -29,6 +30,7 @@ public class PanicActivity extends AppCompatActivity {
     private static final String SMS_MESSAGE_FAILED = "SMS failed... Please protect yourself and call the police.";
     private static final String SMS_MESSAGE_SUCCESS = "SOS was send to your friends.";
     private String SmsNotificationMessage;
+    SmsService smsService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +40,11 @@ public class PanicActivity extends AppCompatActivity {
         TextView panicText = (TextView) findViewById(R.id.PanicText);
 
         pannicActivityController = new PannicActivityController(this);
+        smsService = new SmsService(this,this);
         createNotificationChannel();
         sendSMSMessage();
         panicText.setText(pannicActivityController.getPanicText());
+
     }
 
     private NotificationCompat.Builder getNotificationBuilder(){
@@ -52,27 +56,7 @@ public class PanicActivity extends AppCompatActivity {
     }
 
     protected void sendSMSMessage() {
-        String message = pannicActivityController.getPanicText();
-        SmsNotificationMessage = SMS_MESSAGE_FAILED;
-
-        for(String phoneNo:pannicActivityController.getPhoneNumbers()) {
-            if (ContextCompat.checkSelfPermission(this,
-                    Manifest.permission.SEND_SMS)
-                    != PackageManager.PERMISSION_GRANTED) {
-                if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                        Manifest.permission.SEND_SMS)) {
-                } else {
-                    ActivityCompat.requestPermissions(this,
-                            new String[]{Manifest.permission.SEND_SMS},
-                            MY_PERMISSIONS_REQUEST_SEND_SMS);
-                }
-            } else {
-                SmsManager smsManager = SmsManager.getDefault();
-                smsManager.sendTextMessage(phoneNo, null, message, null, null);
-                SmsNotificationMessage = SMS_MESSAGE_SUCCESS;
-            }
-        }
-
+        SmsNotificationMessage = smsService.sendSMS();
         sendNotification();
     }
 
