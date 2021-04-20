@@ -17,7 +17,7 @@ import com.example.panicbutton.R;
 
 import static androidx.core.content.ContextCompat.getSystemService;
 
-public class NotifyService extends BroadcastReceiver {
+public class ReminderService extends BroadcastReceiver {
     private NotificationManager mNotifyManager;
 
     private static final String PRIMARY_CHANNEL_ID = "reminder_channel";

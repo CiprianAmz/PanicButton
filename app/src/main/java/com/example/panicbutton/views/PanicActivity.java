@@ -24,13 +24,6 @@ import com.example.panicbutton.controllers.SmsService;
 public class PanicActivity extends AppCompatActivity {
     private static final int MY_PERMISSIONS_REQUEST_SEND_SMS =0;
     public PannicActivityController pannicActivityController;
-    private static final String PRIMARY_CHANNEL_ID = "primary_notification_channel";
-    private NotificationManager mNotifyManager;
-
-    private static final int NOTIFICATION_ID = 0;
-    private static final String SMS_MESSAGE_FAILED = "SMS failed... Please protect yourself and call the police.";
-    private static final String SMS_MESSAGE_SUCCESS = "SOS was send to your friends.";
-    private String SmsNotificationMessage;
     SmsService smsService;
     SmsAsyncTask smsAsyncTask;
 
@@ -44,24 +37,18 @@ public class PanicActivity extends AppCompatActivity {
         pannicActivityController = new PannicActivityController(this);
         smsService = new SmsService(this,this);
         smsAsyncTask = new SmsAsyncTask(this,this);
-        createNotificationChannel();
+        //createNotificationChannel();
         sendSMSMessage();
         panicText.setText(pannicActivityController.getPanicText());
 
     }
 
-    private NotificationCompat.Builder getNotificationBuilder(){
-        NotificationCompat.Builder notifyBuilder = new NotificationCompat.Builder(this, PRIMARY_CHANNEL_ID)
-                .setContentTitle("SOS")
-                .setContentText(SmsNotificationMessage + "")
-                .setSmallIcon(R.mipmap.ic_launcher);
-        return notifyBuilder;
-    }
+
 
     protected void sendSMSMessage() {
         //SmsNotificationMessage = smsService.sendSMS();
         startSmsTask();
-        sendNotification();
+       // sendNotification();
     }
     public void startSmsTask(){
         smsAsyncTask.execute();
@@ -90,27 +77,6 @@ public class PanicActivity extends AppCompatActivity {
         }
     }
 
-    public void sendNotification(){
-        NotificationCompat.Builder notifyBuilder = getNotificationBuilder();
-        mNotifyManager.notify(NOTIFICATION_ID, notifyBuilder.build());
-    }
 
-
-    public void createNotificationChannel() {
-        mNotifyManager = (NotificationManager)
-                getSystemService(NOTIFICATION_SERVICE);
-        if (android.os.Build.VERSION.SDK_INT >=
-                android.os.Build.VERSION_CODES.O) {
-            // Create a NotificationChannel
-            NotificationChannel notificationChannel = new NotificationChannel(PRIMARY_CHANNEL_ID,
-                    "Panic Notification", NotificationManager
-                    .IMPORTANCE_HIGH);
-            notificationChannel.enableLights(true);
-            notificationChannel.setLightColor(Color.RED);
-            notificationChannel.enableVibration(true);
-            notificationChannel.setDescription("Notification received when the Panic messages are sent.");
-            mNotifyManager.createNotificationChannel(notificationChannel);
-        }
-    }
 
 }

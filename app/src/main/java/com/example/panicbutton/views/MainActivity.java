@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -17,11 +16,7 @@ import android.widget.TextView;
 import com.example.panicbutton.R;
 import com.example.panicbutton.controllers.LocationAsyncTask;
 import com.example.panicbutton.controllers.MainActivityController;
-import com.example.panicbutton.controllers.NotifyService;
-import com.example.panicbutton.models.ContactModel;
-import com.example.panicbutton.models.SQLManager;
-
-import java.util.ArrayList;
+import com.example.panicbutton.controllers.ReminderService;
 
 public class MainActivity extends AppCompatActivity {
     TextView  currentLocation;
@@ -46,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             calendar.set(Calendar.MINUTE, 30);
             calendar.set(Calendar.SECOND, 00);
 
-            Intent intent = new Intent(getApplicationContext(), NotifyService.class);
+            Intent intent = new Intent(getApplicationContext(), ReminderService.class);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 100, intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
             AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);

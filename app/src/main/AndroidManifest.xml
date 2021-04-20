@@ -70,7 +70,7 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".controllers.NotifyService"></receiver>
+        <receiver android:name=".controllers.ReminderService"></receiver>
     </application>
 
 </manifest>

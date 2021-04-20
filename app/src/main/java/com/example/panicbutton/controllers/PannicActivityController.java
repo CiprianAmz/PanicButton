@@ -20,11 +20,11 @@ public class PannicActivityController {
         String yCoordinate = String.valueOf(modelRepository.getLocation().getyCoordinate());
 
         if(xCoordinate.equals("0.0") && yCoordinate.equals("0.0") ) {
-            panicText = "\nThe message: " + modelRepository.getUserSettings().getUserName()
+            panicText = "\n" + modelRepository.getUserSettings().getUserName()
                     + " is in danger! ";
         }
         else {
-            panicText = "\nThe message: " + modelRepository.getUserSettings().getUserName()
+            panicText = "\n" + modelRepository.getUserSettings().getUserName()
                     + " is in danger at the location " + xCoordinate + " " + yCoordinate;
         }
 

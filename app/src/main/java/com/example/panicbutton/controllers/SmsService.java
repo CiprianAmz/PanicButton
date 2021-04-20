@@ -16,8 +16,6 @@ import android.telephony.SmsMessage;
 public class SmsService {
     private static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 0;
     public PannicActivityController pannicActivityController;
-    private static final String SMS_MESSAGE_FAILED = "SMS failed... Please protect yourself and call the police.";
-    private static final String SMS_MESSAGE_SUCCESS = "SOS was send to your friends.";
     Context context;
     Activity activity;
 
@@ -28,10 +26,10 @@ public class SmsService {
     }
 
 
-    public String sendSMS() {
+    public boolean sendSMS() {
         String message = pannicActivityController.getPanicText();
         String SmsNotificationMessage;
-        SmsNotificationMessage = SMS_MESSAGE_FAILED;
+        boolean retVal = false;
         for (String phoneNo : pannicActivityController.getPhoneNumbers()) {
             if (ContextCompat.checkSelfPermission(context,
                     Manifest.permission.SEND_SMS)
@@ -46,10 +44,10 @@ public class SmsService {
             } else {
                 SmsManager smsManager = SmsManager.getDefault();
                 smsManager.sendTextMessage(phoneNo, null, message, null, null);
-                SmsNotificationMessage = SMS_MESSAGE_SUCCESS;
+                retVal = true;
             }
 
         }
-        return SmsNotificationMessage;
+        return retVal;
     }
 }
