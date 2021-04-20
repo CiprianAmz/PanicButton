@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.panicbutton.R;
 import com.example.panicbutton.controllers.PannicActivityController;
+import com.example.panicbutton.controllers.SmsAsyncTask;
 import com.example.panicbutton.controllers.SmsService;
 
 public class PanicActivity extends AppCompatActivity {
@@ -31,6 +32,7 @@ public class PanicActivity extends AppCompatActivity {
     private static final String SMS_MESSAGE_SUCCESS = "SOS was send to your friends.";
     private String SmsNotificationMessage;
     SmsService smsService;
+    SmsAsyncTask smsAsyncTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,7 @@ public class PanicActivity extends AppCompatActivity {
 
         pannicActivityController = new PannicActivityController(this);
         smsService = new SmsService(this,this);
+        smsAsyncTask = new SmsAsyncTask(this,this);
         createNotificationChannel();
         sendSMSMessage();
         panicText.setText(pannicActivityController.getPanicText());
@@ -56,8 +59,12 @@ public class PanicActivity extends AppCompatActivity {
     }
 
     protected void sendSMSMessage() {
-        SmsNotificationMessage = smsService.sendSMS();
+        //SmsNotificationMessage = smsService.sendSMS();
+        startSmsTask();
         sendNotification();
+    }
+    public void startSmsTask(){
+        smsAsyncTask.execute();
     }
 
     @Override
