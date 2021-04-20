@@ -3,6 +3,8 @@ package com.example.panicbutton.models;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.panicbutton.controllers.DatabaseAsyncTask;
+
 import java.util.ArrayList;
 
 public class ModelRepository {
@@ -17,19 +19,14 @@ public class ModelRepository {
     private static boolean initialised_flag = false;
 
     public ModelRepository(Context context) {
-        if(initialised_flag == false) {
-            location = new LocationModel(0, 0);
-            userSettings = new UserSettingsModel("Your Friend", false);
+        if(!initialised_flag) {
             initialised_flag = true;
+            DatabaseAsyncTask databaseAsyncTask = new DatabaseAsyncTask(context);
+            databaseAsyncTask.execute();
         }
 
         sharedPref = context.getSharedPreferences(PREFERENCES_KEY, Context.MODE_PRIVATE);
-
-        userSettings.setUserName(sharedPref.getString("NAME", "Your friend"));
-        userSettings.setDropFlag(sharedPref.getBoolean("DROP", false));
-
         sqlManager = new SQLManager(context);
-        contactsList = sqlManager.getContacts();
     }
 
     public LocationModel getLocation() {
@@ -77,6 +74,10 @@ public class ModelRepository {
         this.contactsList = contactsList;
 
         sqlManager.updateAllItems(contactsList);
+    }
+
+    public void setContactsList_without_dbUpdate(ArrayList<ContactModel> contactsList) {
+        this.contactsList = contactsList;
     }
 
     public void add_contact(ContactModel contact) {
