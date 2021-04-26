@@ -25,7 +25,8 @@ public class PannicActivityController {
         }
         else {
             panicText = "\n" + modelRepository.getUserSettings().getUserName()
-                    + " is in danger at the location " + xCoordinate + " " + yCoordinate;
+                    + " is in danger at the location " + xCoordinate + " " + yCoordinate
+                    + "\n\nhttps://www.google.com/maps/search/" + yCoordinate + "+" + xCoordinate;
         }
 
         return panicText;
