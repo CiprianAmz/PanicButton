@@ -19,7 +19,7 @@ import android.widget.TextView;
 
 import com.example.panicbutton.R;
 import com.example.panicbutton.controllers.DropCheckService;
-import com.example.panicbutton.controllers.LocationAsyncTask;
+import com.example.panicbutton.controllers.LocationService;
 import com.example.panicbutton.controllers.MainActivityController;
 import com.example.panicbutton.controllers.ReminderService;
 
@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     TextView  currentLocation;
     private MainActivityController mainActivityController;
     private SensorManager sensorManager;
+    private LocationService locationService;
     private DropCheckService dropCheckService;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         mainActivityController = new MainActivityController(this);
         currentLocation.setText(mainActivityController.getLocation());
-        startTask();
+        locationService = new LocationService(this, currentLocation);
 
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
@@ -84,14 +85,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         Log.d("MainActivity", "Settings");
         Intent intent = new Intent(this,SettingsActivity.class);
         startActivity(intent);
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public void startTask() {
-
-        // Start the AsyncTask.
-        // The AsyncTask has a callback that will update the text view.
-        new LocationAsyncTask( this, currentLocation).execute();
     }
 
     @Override

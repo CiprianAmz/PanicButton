@@ -6,26 +6,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
-import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.panicbutton.R;
 import com.example.panicbutton.controllers.LocationActivityController;
-import com.example.panicbutton.controllers.LocationAsyncTask;
+import com.example.panicbutton.controllers.LocationService;
 
 public class LocationActivity extends AppCompatActivity {
     private Button b;
     private TextView t;
     LocationActivityController locationActivityController;
+    LocationService locationService;
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +32,7 @@ public class LocationActivity extends AppCompatActivity {
         b = (Button) findViewById(R.id.RequestLocation);
         locationActivityController = new LocationActivityController(this);
         t.setText(locationActivityController.getLocation());
+        locationService = new LocationService(this, t);
 
         configure_button();
     }
@@ -63,18 +62,8 @@ public class LocationActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View view) {
-                startTask();
             }
         });
     }
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public void startTask() {
-
-        // Start the AsyncTask.
-        // The AsyncTask has a callback that will update the text view.
-        new LocationAsyncTask( this, t).execute();
-    }
-
-
 
 }

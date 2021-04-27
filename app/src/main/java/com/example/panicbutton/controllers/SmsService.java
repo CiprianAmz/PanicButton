@@ -131,7 +131,7 @@ public class SmsService {
                                 }
                             }
                         }, new IntentFilter(DELIVERED));
-                
+
             }
         }
         return curSMSstatus;
