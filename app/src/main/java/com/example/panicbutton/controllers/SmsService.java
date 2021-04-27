@@ -13,11 +13,15 @@ import android.telephony.SmsManager;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import android.widget.Toast;
-
 
 public class SmsService {
     private static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 0;
+    private static final int SMS_INIT = 0;
+    private static final int SMS_SENT = 1;
+    private static final int SMS_FAILED = 2;
+    private static final int SMS_PENDING = 3;
+    private static int curSMSstatus;
+
     public PannicActivityController pannicActivityController;
     Context context;
     Activity activity;
@@ -26,14 +30,16 @@ public class SmsService {
     private static final String SMS_MESSAGE_SUCCESS = "SOS was send to your friends.";
 
     public SmsService(Context ctx, Activity act) {
+        curSMSstatus = SMS_INIT;
         context = ctx;
         pannicActivityController = new PannicActivityController(context);
         activity = act;
         notificationService = new NotificationService(ctx);
     }
 
-    static boolean retVal = false;
-    public boolean sendSMS() {
+    public int sendSMS() {
+        curSMSstatus = SMS_INIT;
+
         String message = pannicActivityController.getPanicText();
         String SmsNotificationMessage;
         for (String phoneNo : pannicActivityController.getPhoneNumbers()) {
@@ -48,7 +54,7 @@ public class SmsService {
                             MY_PERMISSIONS_REQUEST_SEND_SMS);
                 }
             } else {
-                retVal = false;
+                curSMSstatus = SMS_PENDING;
                 String SENT = "SMS_SENT";
                 String DELIVERED = "SMS_DELIVERED";
                 PendingIntent sentPI = PendingIntent.getBroadcast(context, 0, new Intent(SENT), 0);
@@ -66,32 +72,37 @@ public class SmsService {
                                 switch(getResultCode())
                                 {
                                     case Activity.RESULT_OK:
-                                        SetFlag();
+                                        curSMSstatus = SMS_SENT;
                                         notificationService.createNotificationChannel();
                                         notificationService.sendNotification(true);
                                         context.unregisterReceiver(this);
                                         break;
                                     case SmsManager.RESULT_ERROR_GENERIC_FAILURE:
+                                        curSMSstatus = SMS_FAILED;
                                         context.unregisterReceiver(this);
                                         notificationService.createNotificationChannel();
                                         notificationService.sendNotification(false);
                                         break;
                                     case SmsManager.RESULT_ERROR_NO_SERVICE:
+                                        curSMSstatus = SMS_FAILED;
                                         context.unregisterReceiver(this);
                                         notificationService.createNotificationChannel();
                                         notificationService.sendNotification(false);
                                         break;
                                     case SmsManager.RESULT_ERROR_NULL_PDU:
+                                        curSMSstatus = SMS_FAILED;
                                         context.unregisterReceiver(this);
                                         notificationService.createNotificationChannel();
                                         notificationService.sendNotification(false);
                                         break;
                                     case SmsManager.RESULT_ERROR_RADIO_OFF:
+                                        curSMSstatus = SMS_FAILED;
                                         context.unregisterReceiver(this);
                                         notificationService.createNotificationChannel();
                                         notificationService.sendNotification(false);
                                         break;
                                     default:
+                                        curSMSstatus = SMS_FAILED;
                                         notificationService.createNotificationChannel();
                                         notificationService.sendNotification(false);
                                         break;
@@ -110,30 +121,23 @@ public class SmsService {
                                 switch(getResultCode())
                                 {
                                     case Activity.RESULT_OK:
-                                        SetFlag();
+                                        curSMSstatus = SMS_SENT;
                                         context.unregisterReceiver(this);
                                         break;
                                     case Activity.RESULT_CANCELED:
+                                        curSMSstatus = SMS_FAILED;
                                         context.unregisterReceiver(this);
                                         break;
                                 }
                             }
                         }, new IntentFilter(DELIVERED));
-
-
-
-
-//                SmsManager smsManager = SmsManager.getDefault();
-//                smsManager.sendTextMessage(phoneNo, null, message, null, null);
-
-
+                
             }
         }
-        return retVal;
+        return curSMSstatus;
     }
 
-    void SetFlag(){
-        retVal = true;
+    public int getCurSMSstatus() {
+        return curSMSstatus;
     }
-
 }
