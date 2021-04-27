@@ -24,20 +24,23 @@ public class SmsAsyncTask extends AsyncTask<Void, Void, String> {
     protected String doInBackground(Void... voids) {
         boolean status = false;
         retryFlag = true;
-        while (retryFlag == true){
-            status = smsService.sendSMS();
-            if( status == false){
-                retry++;
-            }else {
-                retryFlag = false;
-            }
-            if(retry == 3){
-                retryFlag = false;
-                retry = 0;
-            }
-        }
-        notificationService.createNotificationChannel();
-        notificationService.sendNotification(status);
+//        while (retryFlag == true){
+//            status = smsService.sendSMS();
+//            if( status== false){
+//                retry++;
+//            }else {
+//                retryFlag = false;
+//                break;
+//            }
+//            if(retry == 3){
+//                retryFlag = false;
+//                retry = 0;
+//                break;
+//            }
+           smsService.sendSMS();
+
+        //}
+
         return null;
     }
 
